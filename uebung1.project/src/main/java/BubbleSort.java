@@ -9,7 +9,21 @@ public class BubbleSort {
         System.out.println("Ausgabe: " + Arrays.toString(a));
     }
 
-    public static void bubbleSort (int[] a) {
-        // TODO
+    public static void bubbleSort (int[] a)
+    {
+        int tmp;
+
+        for(int i = 0; i < a.length - 1; i++)
+        {
+            for(int j = a.length - 1; j > i; j--)
+            {
+                if(a[j] < a[j - 1])
+                {
+                    tmp = a[j];
+                    a[j] = a[j - 1];
+                    a[j - 1] = tmp;
+                }
+            }
+        }
     }
 }
