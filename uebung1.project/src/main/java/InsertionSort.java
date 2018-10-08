@@ -6,7 +6,8 @@
 public class InsertionSort {
 
     public static void main(String[] args) {
-        int[] array = { 4, 1, 8, -3, 5, 7 };
+        //int[] array = { 4, 1, 8, -3, 5, 7 };
+        int[] array = { 35, 22, 10, 51, 48 };
         insertionSort(array);
         for (int i = 0; i < array.length; i++) {
             System.out.print(array[i] + ", ");
