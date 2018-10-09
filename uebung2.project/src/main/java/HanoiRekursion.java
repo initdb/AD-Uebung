@@ -1,4 +1,4 @@
-package de.fh_rosenheim.algorithmen.lecture02;
+//package de.fh_rosenheim.algorithmen.lecture02;
 
 public class HanoiRekursion {
 	private static final int N = 3;
