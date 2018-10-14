@@ -9,12 +9,12 @@ public class Aktienkurse {
 
     public static void main(String[] args) {
 
-        Integer maxSum = Integer.MIN_VALUE; // keeps sum of maximum subarray (that is already known at current position)
+        Integer maxSum = 0/*Integer.MIN_VALUE*/; // keeps sum of maximum subarray (that is already known at current position)
         int low = 0;                        // - left index
         int high = 0;                       // - right index
 
 
-        Integer curSum = Integer.MIN_VALUE; // keeps maximum sum of all subarrays that end at current position
+        Integer curSum = 0/*Integer.MIN_VALUE*/; // keeps maximum sum of all subarrays that end at current position
         int curLow = 0;                     // - left index
         int curHigh = 0;
 
@@ -52,7 +52,8 @@ public class Aktienkurse {
         System.out.println("- Einkaufstag:\t" + (low + 1));
         System.out.println("- Verkaufstag:\t" + (high + 1));
         int sum = 0;
-        for (int i=low; i<=high; i++) {
+        for (int i=low; i<=high; i++)
+        {
             sum += changes[i];
         }
         System.out.println("- Verdienst:\t" + sum);
