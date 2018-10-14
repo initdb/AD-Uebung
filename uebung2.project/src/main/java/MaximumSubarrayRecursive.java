@@ -15,8 +15,8 @@ public class MaximumSubarrayRecursive {
     }
 
     public static void main(String[] args) {
-        //int[] input = { 13, -3, -25, 20, -3, -16, -23, 18, 20, -7, 12, -5, -22, 15, -4, 7};
-        int[] input = { 13, -3, -25, 20, -3, -16};
+        int[] input = { 13, -3, -25, 20, -3, -16, -23, 18, 20, -7, 12, -5, -22, 15, -4, 7};
+        //int[] input = { 13, -3, -25, 20, -3, -16};
         Subarray sol = findMaximumSubarray(input, 0, input.length - 1);
         System.out.println("Max Subarray: low=" + sol.low + ", right=" + sol.high + ", sum= " + sol.sum);
     }

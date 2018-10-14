@@ -16,11 +16,34 @@ public class Aktienkurse {
 
         Integer curSum = Integer.MIN_VALUE; // keeps maximum sum of all subarrays that end at current position
         int curLow = 0;                     // - left index
+        int curHigh = 0;
 
-        for (int pos = 0; pos < changes.length; pos++) {   // scanline: read from left to right
+        for (int pos = 0; pos < changes.length; pos++)
+        {   // scanline: read from left to right
+            curSum += changes[pos];
+            if(curSum > 0)
+            {
+                // curSum aktualisieren
+                //curSum += changes[pos];
+                curHigh = pos;
+            }
+		    else
+            {
+                // EdgeMaxSubarray neu beginnnen
+                // nur aktuelles Element bildet EdgeMaxSubArray
+                curSum = 0;
+                curLow = pos;
+                curHigh = pos;
+            }
 
-		// TODO
-
+            if(curSum > maxSum)
+            {
+                // EdgeMaxSubarray ist besser als bisher
+                // gefundenes MaximumSubArray
+                maxSum = curSum;
+                high = curHigh;
+                low = curLow;
+            }
         }
 
 
