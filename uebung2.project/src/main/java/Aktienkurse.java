@@ -4,7 +4,7 @@
 public class Aktienkurse {
 
     // absolute Kurs
-    public static final int[] changes = /*{1, -5, 4, 2, -7, 3, 6, -1, 2, -4, 7, -10, 2, 6, 1, -3}*/{5,-6,3};
+    public static final int[] changes = {1, -5, 4, 2, -7, 3, 6, -1, 2, -4, 7, -10, 2, 6, 1, -3} /*{5,-6,3}*/;
 
 
     public static void main(String[] args) {
