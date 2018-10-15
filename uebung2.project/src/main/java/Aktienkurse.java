@@ -32,7 +32,7 @@ public class Aktienkurse {
                 // EdgeMaxSubarray neu beginnnen
                 // nur aktuelles Element bildet EdgeMaxSubArray
                 curSum = 0;
-                curLow = pos;
+                curLow = pos + 1;
                 curHigh = pos;
             }
 
