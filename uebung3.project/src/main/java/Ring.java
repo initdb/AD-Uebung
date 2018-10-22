@@ -43,14 +43,52 @@ public class Ring {
 
 	// add element with value "val" to THIS ring in front of "first"/anchor element
 	// leave first element / anchor unchanged.
-	public void append(int val) {
-		// TODO 
+	public void append(int val)
+	{
+		Item newItem = new Item(val);
+
+		if(first == null)
+		{
+			first = newItem;
+		}
+		else if(first.next == null)
+		{
+			first.next = newItem;
+			first.prev = newItem;
+			newItem.prev = first;
+			newItem.next = first;
+		}
+		else
+		{
+			newItem.next = first;
+			newItem.prev = first.prev;
+
+			first.prev.next = newItem;
+			first.prev = newItem;
+		}
 	}
 	
 	// removes items [a..b] from THIS ring and returns removed ring
 	// Assumption: a..b does not include anchor/first element
 	public Ring split(Item a, Item b) {
-		// TODO 
+
+		Ring ring = new Ring();
+		if(b.next == a)
+		{
+			ring.first = first;
+			first = null;
+		}
+		else
+		{
+			a.prev.next = b.next;
+			b.next.prev = a.prev;
+
+			ring.first = a;
+			a.prev = b;
+			b.next = a;
+		}
+
+		return ring;
 	}
 
 
