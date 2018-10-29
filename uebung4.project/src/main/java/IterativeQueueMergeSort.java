@@ -26,9 +26,16 @@ public class IterativeQueueMergeSort {
      */
     public static void sort(Comparable[] a) {
         centralQueue = new LinkedList<Queue<Comparable>>();
+        Queue<Comparable> list1 = new LinkedList<>();
+        Queue<Comparable> list2 = new LinkedList<>();
 
         // TODO
-        
+        while(list2.element() != null)
+        {
+            list1 = centralQueue.remove();
+            list2 = centralQueue.remove();
+            centralQueue.add(merge(list1,list2));
+        }
     }
 
 
@@ -39,13 +46,28 @@ public class IterativeQueueMergeSort {
      * @param b second queue (sorted!)
      * @return queue with elements of a and b in sorted order
      */
-    private static Queue<Comparable> merge(Queue<Comparable> a, Queue<Comparable> b) {
+    private static Queue<Comparable> merge(Queue<Comparable> a, Queue<Comparable> b)
+    {
         Queue<Comparable> c = new LinkedList<Comparable>();
         // TODO
-        
+        while(a.element() != null)
+        {
+            while(b.element() != null)
+            {
+                if (a.element().compareTo(b.element()) < 0) /*a kleiner*/
+                {
+                    ((LinkedList<Comparable>) c).add(a.remove());
+                }
+                else
+                {
+                    ((LinkedList<Comparable>) c).add(b.remove());
+                }
+            }
+            ((LinkedList<Comparable>) c).add(a.remove());
+        }
+
 	
-	
-	return c;
+	    return c;
     }
 
 }
