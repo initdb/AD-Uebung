@@ -26,15 +26,25 @@ public class IterativeQueueMergeSort {
      */
     public static void sort(Comparable[] a) {
         centralQueue = new LinkedList<Queue<Comparable>>();
-        Queue<Comparable> list1 = new LinkedList<>();
-        Queue<Comparable> list2 = new LinkedList<>();
 
         // TODO
-        while(list2.element() != null)
+        for(int i = 0;i < a.length; i++)
         {
-            list1 = centralQueue.remove();
-            list2 = centralQueue.remove();
-            centralQueue.add(merge(list1,list2));
+            LinkedList<Comparable> tmp = new LinkedList<>();    // erstellt neue Queue
+            tmp.add(a[i]);                                      // fügt arry elemnt zur Queue hinzu
+            centralQueue.add(tmp);  // fügt neue Queue zu central Queue hinzu.
+
+        }
+
+        while(centralQueue.size() > 1)
+        {
+            centralQueue.add(merge(centralQueue.remove(), centralQueue.remove()));
+        }
+
+        // write result to array
+        for(int i = 0; i < a.length; i++)
+        {
+            a[i] = centralQueue.element().remove();
         }
     }
 
@@ -50,23 +60,28 @@ public class IterativeQueueMergeSort {
     {
         Queue<Comparable> c = new LinkedList<Comparable>();
         // TODO
-        while(a.element() != null)
+        while(!a.isEmpty() && !b.isEmpty())
         {
-            while(b.element() != null)
+            if (a.element().compareTo(b.element()) < 0) /*a kleiner*/
             {
-                if (a.element().compareTo(b.element()) < 0) /*a kleiner*/
-                {
-                    ((LinkedList<Comparable>) c).add(a.remove());
-                }
-                else
-                {
-                    ((LinkedList<Comparable>) c).add(b.remove());
-                }
+                c.add(a.remove());
             }
-            ((LinkedList<Comparable>) c).add(a.remove());
+            else
+            {
+                c.add(b.remove());
+            }
         }
 
-	
+        while(!a.isEmpty())
+        {
+            c.add(a.remove());
+        }
+
+        while(!b.isEmpty())
+        {
+            c.add(b.remove());
+        }
+
 	    return c;
     }
 
