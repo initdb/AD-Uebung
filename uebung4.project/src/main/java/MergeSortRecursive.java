@@ -1,5 +1,3 @@
-package de.fh_rosenheim.algorithmen.lecture04;
-
 // Code adapted from Sedgewick et al.
 
 import java.util.BitSet;

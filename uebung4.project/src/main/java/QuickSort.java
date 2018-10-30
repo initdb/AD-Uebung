@@ -1,5 +1,3 @@
-package de.fh_rosenheim.algorithmen.lecture04;
-
 /**
  * based on Sedgewick et al, adjusted by W. Mühlbauer
  */

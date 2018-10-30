@@ -1,4 +1,3 @@
-package de.fh_rosenheim.algorithmen.lecture04;
 
 public class MergeSortIterative {
 
@@ -96,7 +95,7 @@ public class MergeSortIterative {
     // Test function
     public static void main(String[] args) {
         Integer[] a = {5, 2, 4, 7, 1, 3, 2, 6};
-        MergeSortRecursive.sort(a);
+        sort(a);
         for (int i = 0; i < a.length; i++) {
             System.out.print(a[i]);
         }

@@ -1,5 +1,3 @@
-package de.fh_rosenheim.algorithmen.lecture04;
-
 
 
 public class HeapSort {
@@ -73,7 +71,7 @@ public class HeapSort {
 
     public static void main(String[] args) {
         Integer[] a = {2, 1, 5, 6, 4, 8, 7, 3};
-        QuickSort.sort(a);
+        heapSort(a);
         for (int i = 0; i < a.length; i++) {
             System.out.print(a[i]);
         }
