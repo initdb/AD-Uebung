@@ -25,14 +25,14 @@ public class RadixSortTest {
     @org.junit.Test
     public void testStringSort() {
         String[] input = { "4PGC938", "2IYE230", "3CIO720", "1ICK750", "1OHV845", "4JZY524", "1ICK750", "3CIO720", "1OHV845", "1OHV845", "2RLA629", "2RLA629", "3ATW723"};
-        RadixSort.sortStrings(input, 7);
+        String[] output = RadixSort.sortStrings(input, 7);
         System.out.print("Result: ");
-        for (String s : input) {
+        for (String s : output) {
             System.out.print(s + " ");
         }
         System.out.println();
         String[] expected = {"1ICK750", "1ICK750", "1OHV845", "1OHV845", "1OHV845", "2IYE230", "2RLA629", "2RLA629", "3ATW723", "3CIO720", "3CIO720", "4JZY524", "4PGC938"};
-        assertArrayEquals(expected, input);
+        assertArrayEquals(expected, output);
     }
 
 }

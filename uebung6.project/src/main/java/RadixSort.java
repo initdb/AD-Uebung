@@ -41,36 +41,36 @@ public class RadixSort {
      * @param a the array to be sorted
      * @param w the number of characters per string
      */
-    public static void sortStrings(String[] a, int w)
+    public static String[] sortStrings(String[] a, int w)
     {
-        Integer[] zeahlArg = new Integer[256];
-        String[] output = new String[a.length];
-        // loop for length of each String
+        // loop for length of each String, with index i
         for(int i = w-1; 0 <= i; i--)
         {
-            // loop for each character
+            int[] count = new int[256];
+            String[] output = new String[a.length];
+            // count current column, with index j
             for(int j = 0; j < a.length; j++)
             {
-                // sortiere Strings
-                zeahlArg[a[j].charAt(i)]++;
+                count[a[j].charAt(i)]++;
             }
 
-            // count in "zeahlArg[j]" how many elements are <= j
-            for (int j = 1; j <= w; j++) {
-                zeahlArg[j] = zeahlArg[j] + zeahlArg[j - 1];
+            // sum up indexes; checks out
+            for (int j = 1; j < count.length; j++) {
+                count[j] = count[j] + count[j - 1];
             }
 
             // iterate over input, put each element into correct position of result array
             // using the computed cumulated frequencies in count
-            for (int j = a.length - 1; j >= 0; j--) {
-                Integer currentChar = (int) a[j].charAt(i);
+            for (int j = a.length-1; j >= 0; j--) {
+                int currentChar = (int) a[j].charAt(i);
                 // count[currentInt] elements are smaller than currentInt
                 // put currentInt to index count[currentInt] - 1
-                output[zeahlArg[currentChar] - 1] = a[j];
-                zeahlArg[currentChar]--;
+                output[count[currentChar] - 1] = a[j];
+                count[currentChar]--;
             }
+            a = output;
         }
 
-        a = output;
+        return a;
     }
 }
