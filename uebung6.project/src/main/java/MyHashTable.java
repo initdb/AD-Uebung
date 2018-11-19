@@ -79,9 +79,23 @@ public class MyHashTable {
     // delete entry with key k from hash table
     public void delete(int k)  {
 
-        // TODO
+        int hash = hashFunction(k);
+        int i = 0;      // counter for probing sequence
+        int kToDelete;
 
+        while (i < TABLE_SIZE)  {
+            // compute probing position in hash table
+            int j  = (hash + i) % TABLE_SIZE;
+
+            if (hashTable[j].key == k) {
+                kToDelete = j;
+            }
+
+            i++;
+        }
         // do other methods have to be modified as well?
+
+
     }
 
     public void printHash() {

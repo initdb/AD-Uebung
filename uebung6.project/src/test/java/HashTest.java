@@ -1,5 +1,3 @@
-package de.fh_rosenheim.algorithmen.lecture06;
-
 public class HashTest {
 
 	public static void main(String[] args) {

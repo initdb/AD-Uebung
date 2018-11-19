@@ -1,4 +1,3 @@
-package de.fh_rosenheim.algorithmen.lecture06;
 
 public class HashEntry {
 

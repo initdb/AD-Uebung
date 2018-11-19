@@ -1,6 +1,3 @@
-package de.fh_rosenheim.algorithmen.lecture06;
-
-
 /**
  * simple hash table that stores HashEntry objects as value 
  * uses "Lineares Sondieren"
