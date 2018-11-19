@@ -81,21 +81,39 @@ public class MyHashTable {
 
         int hash = hashFunction(k);
         int i = 0;      // counter for probing sequence
-        int kToDelete;
+        int kToDelete = 0;
 
+        // find the index of the key to delete
         while (i < TABLE_SIZE)  {
             // compute probing position in hash table
             int j  = (hash + i) % TABLE_SIZE;
 
-            if (hashTable[j].key == k) {
+            if(hashTable[j] == null) {
+                break;
+            }
+            else if (hashTable[j].key == k) {
                 kToDelete = j;
             }
 
             i++;
         }
         // do other methods have to be modified as well?
+        // find the last entity in the key list
+        i = kToDelete;
+        while (kToDelete != 0 && i < TABLE_SIZE) {
+            int j  = (hash + i) % TABLE_SIZE;
 
+            if (hashTable[j] == null) {
+                break;
+            }
 
+            i++;
+        }
+
+        // exchange the key to delete and the last valid one
+        int j  = (hash + (i-1)) % TABLE_SIZE;
+        hashTable[kToDelete] = hashTable[j];
+        hashTable[j] = null;
     }
 
     public void printHash() {
@@ -116,6 +134,7 @@ public class MyHashTable {
         // Inserting keys 1, 2, 6
         hashTable.insert(1, "AD");
         hashTable.insert(2, "RN");
+        //hashTable.insert(3, "DB");
         hashTable.insert(6, "PRG3");
         System.out.println("Einträge nach Einfügen der Schlüssel 1, 2, 6: ");
         hashTable.printHash();
