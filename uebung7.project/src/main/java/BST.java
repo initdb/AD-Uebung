@@ -72,6 +72,19 @@ public class BST<Key extends Comparable<Key>, Value> {
         }
     }
 
+    private Key searchKey(Node x, Key key) {
+        if (key == null){
+            return null;
+        }
+        int cmp = x.key.compareTo(key);
+        if (cmp < 0) {
+            return searchKey(x.right, key);
+        } else if (cmp > 0) {
+            return searchKey(x.left, key);
+        } else {
+            return x.key;
+        }
+    }
 
     /**
      * insert node z into tree and returns node
@@ -118,7 +131,16 @@ public class BST<Key extends Comparable<Key>, Value> {
 
     // deletes node with key key from tree
     public void delete(Key key) {
-		
+        // Knoten suchen
+        Key toDelete = searchKey(root ,key);
+
+        // falls nicht vorhanden -> return
+        if(toDelete == null)
+            return;
+
+        // berücksichtigen aller Fälle
+        // ändern nur durch reverenzen, es darf kein neuer knoten erzeugt werden
+        // verwenden sie transplant und minimum
 	// TODO 
 
     }
@@ -145,7 +167,7 @@ public class BST<Key extends Comparable<Key>, Value> {
      * @return
      */
     public int height(Node x) {
-	
+	    return 0;
 	//TODO
     }
 
