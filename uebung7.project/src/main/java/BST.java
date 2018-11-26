@@ -72,7 +72,7 @@ public class BST<Key extends Comparable<Key>, Value> {
         }
     }
 
-    private Key searchKey(Node x, Key key) {
+    private Node searchKey(Node x, Key key) {
         if (key == null){
             return null;
         }
@@ -82,7 +82,7 @@ public class BST<Key extends Comparable<Key>, Value> {
         } else if (cmp > 0) {
             return searchKey(x.left, key);
         } else {
-            return x.key;
+            return x;
         }
     }
 
@@ -132,17 +132,50 @@ public class BST<Key extends Comparable<Key>, Value> {
     // deletes node with key key from tree
     public void delete(Key key) {
         // Knoten suchen
-        Key toDelete = searchKey(root ,key);
+        Node toDelete = searchKey(root ,key);
 
         // falls nicht vorhanden -> return
         if(toDelete == null)
             return;
 
         // berücksichtigen aller Fälle
-        // ändern nur durch reverenzen, es darf kein neuer knoten erzeugt werden
-        // verwenden sie transplant und minimum
-	// TODO 
+        // 1: kein  Kind
+        if(toDelete.left == null && toDelete.right == null) {
+            if(toDelete.parent.right == toDelete)
+                toDelete.parent.right = null;
+            else
+                toDelete.parent.left = null;
+        }
 
+        // 2a: kein linkes Kind
+        else if(toDelete.left == null && toDelete.right != null) {
+            transplant(toDelete, toDelete.right);
+        }
+
+        // 2b: kein rechtes Kind
+        else if(toDelete.left != null && toDelete.right == null) {
+            transplant(toDelete, toDelete.left);
+        }
+        // 3a: 2 Kinder und rechtes Kind direkter Nachfolger
+        else if(toDelete.left != null && toDelete.right != null
+                && toDelete.right == minimum(toDelete.right)) {
+            transplant(toDelete, toDelete.right);
+            toDelete.right.left = toDelete.left;
+            toDelete.right.left.parent = toDelete.right;
+        }
+
+        // 3b: 2 Kinder und Nachfolger nicht direkter Nachfolger
+        else if(toDelete.left != null && toDelete.right != null
+                && toDelete.right != minimum(toDelete.right)) {
+            Node successor = minimum(toDelete.right);
+            transplant(successor, successor.right);
+            successor.right = toDelete.right;
+            successor.parent = successor;
+
+            transplant(toDelete, successor);
+            successor.left = toDelete.left;
+            successor.left.parent = successor;
+        }
     }
 
 
@@ -167,8 +200,7 @@ public class BST<Key extends Comparable<Key>, Value> {
      * @return
      */
     public int height(Node x) {
-	    return 0;
-	//TODO
+        return 1;
     }
 
     public int height() {
