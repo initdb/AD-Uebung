@@ -90,7 +90,15 @@ class BinarySearchTree<T>  {
 
 	}
 
+	private Node<T> getPredecessor(Node<T> current) {
+		Node<T> predecessor = current;
+		predecessor = current.left;
 
+		while(predecessor.right != null && predecessor.right != current) {
+			predecessor = predecessor.right;
+		}
+		return predecessor;
+	}
 
 	/**
 	 * print out key values using Morris In_order-Traversal
@@ -100,8 +108,38 @@ class BinarySearchTree<T>  {
 		System.out.println("In order sequence: ");
 
 		Node current = root;
-		
-                // TODO 
+
+		Node predecessor;
+
+		while(current != null) {
+			// wenn blatt (kein linkes Kind)
+			if(current.left == null){
+				// ausgabe des keys
+				System.out.print(current.key + " ");
+				// sprung auf pseudo link
+				current = current.right;
+			}
+			else {
+				// predecessor nur sucen wenn ein linkes Kind
+				predecessor = getPredecessor(current);
+
+				// wenn nach pseudo link genutzt
+				if (predecessor.right == current) {
+					// delete pseudo link
+					predecessor.right = null;
+					// ausgabe des keys
+					System.out.print(current.key + " ");
+					// wandern nach rechts
+					current = current.right;
+				}
+				else {
+					// setzen des pseudo links
+					predecessor.right = current;
+					// weiterspringen von current zum linken kind
+					current = current.left;
+				}
+			}
+		}
 
 		System.out.println();
 	}
