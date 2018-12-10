@@ -206,7 +206,12 @@ public class BTree {
      * @return maximum key
      */
     public int maximum(BNode x) {
-        // TODO 
+
+        while(!x.leaf) {
+            x = x.children[x.n];
+        }
+
+        return x.keys[x.n-1];
     }
 
 
@@ -249,9 +254,33 @@ public class BTree {
         }
 
         // NOW WE SEARCH THE ACTUAL PREDECESSOR (knowing that they key for which we search is in node "current" at index i)
-	// TODO
+	    if(current.leaf && i >= 1) {
+	        return current.keys[i-1];
+        }
+        else if(!current.leaf) {
+            return maximum(current.children[i]);
+        }
+        else {
+            BNode tmp = current;
+            BNode prev;
 
+            while(!searchPath.isEmpty()) {
 
+                prev = tmp;
+                tmp = searchPath.pop();
+
+                int j = 0;
+                while(j <= tmp.n && tmp.children[j] != prev) {
+                    j++;
+                }
+
+                if(j >= 1)
+                    return tmp.keys[j-1];
+            }
+
+        }
+
+        return 0;
     }
 
 }
