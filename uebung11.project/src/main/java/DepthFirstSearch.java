@@ -71,8 +71,33 @@ public class DepthFirstSearch {
         stack.push(u);
 
         while (!stack.isEmpty()) {
-            // TODO: ab hier
 
+            int current_node =  stack.peek();
+
+            int undiscovered_node = -1;
+
+            for (int v : G.adj(current_node)) {
+                if (color[v] == Color.WHITE) {
+                    undiscovered_node = v;
+                    break;
+                }
+            }
+
+            time++;
+
+            if(undiscovered_node != -1) {
+                discoveryTime[undiscovered_node] = time;
+                color[undiscovered_node] = Color.GRAY;
+                stack.push(undiscovered_node);
+                System.out.println("discovered node:\t" + undiscovered_node);
+            }
+            else
+            {
+                finishTime[current_node] = time;
+                color[current_node] = Color.BLACK;
+                stack.pop();
+                System.out.println("finished node:\t\t" + current_node);
+            }
         }
     }
 
