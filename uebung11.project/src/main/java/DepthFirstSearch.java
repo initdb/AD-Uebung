@@ -76,16 +76,20 @@ public class DepthFirstSearch {
 
             int undiscovered_node = -1;
 
+            // pass time
+            time++;
+
             for (int v : G.adj(current_node)) {
+                // look for children
                 if (color[v] == Color.WHITE) {
                     undiscovered_node = v;
                     break;
                 }
             }
 
-            time++;
-
             if(undiscovered_node != -1) {
+                // discover
+                // set time and color gray
                 discoveryTime[undiscovered_node] = time;
                 color[undiscovered_node] = Color.GRAY;
                 stack.push(undiscovered_node);
@@ -93,6 +97,7 @@ public class DepthFirstSearch {
             }
             else
             {
+                // finish
                 finishTime[current_node] = time;
                 color[current_node] = Color.BLACK;
                 stack.pop();
